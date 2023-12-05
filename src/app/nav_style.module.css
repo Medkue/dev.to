@@ -1,0 +1,40 @@
+
+.nav{
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    width: 100%;
+}
+.flex_row{
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    justify-content: center;
+}
+.mid_nav,.search{
+    display:none;
+}
+
+@media screen and (min-width: 768px) {
+    .nav{
+        width: 80%;
+    }
+   .mid_nav{
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+   }
+   #search{
+    padding: 5px;
+    background-color: #F4F4F5;
+    border-radius: 5px;
+   }
+   .search{
+    display: flex;
+    border-radius: 5px;
+    background-color: #F4F4F5;
+   }
+   .hide{
+    display: none;
+   }
+  }
