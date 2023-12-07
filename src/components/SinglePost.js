@@ -1,13 +1,18 @@
-import { useKk } from "@/app/page";
+import Link from "next/link";
 
-export const SinglePost = () => {
-  const { posts } = useKk();
-  // console.log(posts[0]);
+export const SinglePost = (props) => {
+  console.log(props);
   return (
-    <div className="w-[392px] h-[476px] flex flex-col gap-[10px]">
-      <img src={posts[0].image} />
-      <p>{posts[0].createdAt}</p>
-      <p>{posts[0].description}</p>
-    </div>
+    <Link href="/moreinfo">
+      <div className="w-[392px] h-[476px] flex flex-col gap-[10px]">
+        {props.cover_image === null ? (
+          <img src="./catcat.jpeg" />
+        ) : (
+          <img src={props.cover_image} />
+        )}
+        <p>{props.title}</p>
+        <p>{props.description}</p>
+      </div>
+    </Link>
   );
 };

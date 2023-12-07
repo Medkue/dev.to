@@ -7,6 +7,7 @@ import { SinglePost } from "@/components/SinglePost";
 import { data } from "autoprefixer";
 import { TrendBanner } from "@/components/TrendBanner";
 import { Trending } from "@/components/Trending";
+import { BlogListing } from "@/components/BlogListing";
 export const kk = createContext();
 
 export const useKk = () => useContext(kk);
@@ -47,6 +48,7 @@ export default function Home() {
           </div> */}
           {/* <SinglePost /> */}
           <Trending />;
+          <BlogListing />
         </div>
       </kk.Provider>
     </>

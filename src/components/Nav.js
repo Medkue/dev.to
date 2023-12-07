@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import styles from "../app/nav_style.module.css";
 
 export const Nav = () => {
@@ -11,7 +12,9 @@ export const Nav = () => {
       </div>
       <div className={styles.mid_nav}>
         <p className="text-base text-[#3B3C4A]">Home</p>
-        <p className="text-base text-[#3B3C4A]">Blog</p>
+        <Link href="/blog">
+          <p className="text-base text-[#3B3C4A]">Blog</p>
+        </Link>
         <p className="text-base text-[#3B3C4A]">Contact</p>
       </div>
       <div className={styles.search}>
