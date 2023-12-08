@@ -19,11 +19,12 @@ export const useSearch = () => useContext(SearchContext);
 
 export default function RootLayout({ children }) {
   const [searchValue, setSearchValue] = useState("");
+  const [discuss, setDiscuss] = useState('');
 
   return (
     <html lang="en">
       <body className={inter.className}>
-        <SearchContext.Provider value={{ searchValue, setSearchValue }}>
+        <SearchContext.Provider value={{ searchValue, setSearchValue, discuss, setDiscuss }}>
           <Nav />
           {children}
           <Footer />

@@ -49,7 +49,7 @@ export const Trending = () => {
       <div className="w-[1200px] h-[420px] rounded-[8px] relative ">
         <div className="w-[1200px] h-[420px] rounded-[8px]  overflow-hidden">
           {isLoading === true ? (
-            <div className="w-full h-full">
+            <div className="w-full h-full flex justify-center items-center">
               <p className="text-[20px] text-black">Loading</p>
             </div>
           ) : (
