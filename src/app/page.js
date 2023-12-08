@@ -15,16 +15,6 @@ export const useKk = () => useContext(kk);
 export default function Home() {
   const [posts, setPosts] = useState([]);
 
-  // useEffect(() => {
-  //   fetch("https://dev.to/api/articles?username=gereltuyamz")
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       setPosts(data);
-  //       console.log(posts);
-  //       console.log(data[0].cover_image);
-  //     });
-  // }, []);
-
   useEffect(() => {
     const getData = async () => {
       const res = await fetch(
@@ -35,19 +25,12 @@ export default function Home() {
     };
     getData();
   }, []);
-  // console.log(posts, "jj");
+
   return (
     <>
       <kk.Provider value={{ posts }}>
         <div className="w-full flex flex-col gap-[50px] justify-center items-center">
-          <Nav />
-          {/* <div className="flex gap-[10px]">
-            {posts.map((item) => {
-              <SinglePost />;
-            })}
-          </div> */}
-          {/* <SinglePost /> */}
-          <Trending />;
+          <Trending />
           <BlogListing />
         </div>
       </kk.Provider>

@@ -1,10 +1,9 @@
 import Link from "next/link";
 
 export const SinglePost = (props) => {
-  console.log(props);
   return (
     <Link href="/moreinfo">
-      <div className="w-[392px] h-[476px] flex flex-col gap-[10px]">
+      <div className="w-[392px] h-[] flex flex-col gap-[10px] rounded-[8px] overflow-hidden">
         {props.cover_image === null ? (
           <img src="./catcat.jpeg" />
         ) : (
