@@ -27,7 +27,9 @@ export const Nav = () => {
           <Link href="/blog">
             <p className="text-base text-[#3B3C4A]">Blog</p>
           </Link>
+          <Link href="/contact">
           <p className="text-base text-[#3B3C4A]">Contact</p>
+          </Link>
         </div>
         <div className={styles.search}>
           <input

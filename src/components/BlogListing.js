@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { SinglePost } from "./SinglePost";
 import styles from "../app/nav_style.module.css";
 import { useSearch } from "@/app/layout";
+import Link from "next/link";
 
 export const BlogListing = () => {
   const [posts, setPosts] = useState([]);
@@ -26,7 +27,7 @@ export const BlogListing = () => {
      
     try {
       if(discuss=='') return
-      fetch(`https://dev.to/api/articles?tags=${discuss}`)
+      fetch(`https://dev.to/api/articles?tag=${discuss}`)
         .then((res) => res.json())
         .then((data) => setCate(data));
     } finally {
@@ -41,19 +42,10 @@ export const BlogListing = () => {
 
   const on = (event) => {
     let x = event.target.textContent;
-    console.log(x);
-    if (x == "Design") {
-      setDiscuss("design")
-    } else if (x == "Travel") {
-       setDiscuss("travel")
-    } else if (x == 'Fashion') {
-       setDiscuss("fashion")
-    } else if (x == 'Branding') {
-       setDiscuss("branding")
-    } else if (x == 'Discuss') {
-       setDiscuss("discuss")
-    } else if (x == "All") {
+    if (x == "All") {
       setDiscuss('')
+    }else{
+      setDiscuss(x.toLowerCase())
     }
   }
   // console.log(discuss);
@@ -76,7 +68,8 @@ console.log(cate);
               <p className="flex p-[3px] hover:bg-black hover:text-white rounded-[4px]" onClick={on}>Branding</p>
               <p className="flex p-[3px] hover:bg-black hover:text-white rounded-[4px]" onClick={on}>Discuss</p>
             </div>
-            <p className="flex p-[3px] hover:bg-black hover:text-white rounded-[4px]">View all</p>
+            <Link href="/blog">
+            <p className="flex p-[3px] hover:bg-black hover:text-white rounded-[4px]">View all</p></Link>
           </div>    
         </div>
         <div className="w-[1200px] grid grid-cols-3 flex justify-center gap-[40px] ">
@@ -93,18 +86,20 @@ console.log(cate);
               })
               .map((post, index) => {
                 return (
+                  <Link href="/id">
+                  <div className="h-fit w-fit p-[8px] border-[1px] rounded-[8px]" key={post.id}>
+                    <SinglePost {...post} />
+                  </div>
+                  </Link>
+                );
+              }): cate.map((post, index) => {
+                if (index >= 9) return 
+                return (
                   <div className="h-fit w-fit p-[8px] border-[1px] rounded-[8px]" key={post.id}>
                     <SinglePost {...post} />
                   </div>
                 );
-              }): cate.map((post, index) => {
-                if (index < 9) {
-                  return (
-                    <div className="h-fit w-fit p-[8px] border-[1px] rounded-[8px]" key={post.id}>
-                      <SinglePost {...post} />
-                    </div>
-                  );
-                }else {return}
+                
             })
           )}
         </div>
