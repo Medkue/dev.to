@@ -10,6 +10,7 @@ export const BlogListing = () => {
   const [posts, setPosts] = useState([]);
   const [cate, setCate] = useState([]);
   const [number, setNumber] = useState(9);
+  const [num, setNum] = useState(9);
   const [isLoading, setLoading] = useState(true);
   const { searchValue, discuss, setDiscuss } = useSearch();
 
@@ -27,18 +28,22 @@ export const BlogListing = () => {
      
     try {
       if(discuss=='') return
-      fetch(`https://dev.to/api/articles?tag=${discuss}`)
+      fetch(`https://dev.to/api/articles?page&tag=${discuss}&per_page=${num}`)
         .then((res) => res.json())
         .then((data) => setCate(data));
     } finally {
       setLoading(false);                                                    
     }
-  }, [discuss]);
+  }, [discuss,num]);
 
 
   const load = () => {
     setNumber((prev) => prev + 3);
   };
+
+  const load2 = () => {
+    setNum((prev) => prev + 3)
+  }
 
   const on = (event) => {
     let x = event.target.textContent;
@@ -48,11 +53,6 @@ export const BlogListing = () => {
       setDiscuss(x.toLowerCase())
     }
   }
-  // console.log(discuss);
-  const a = posts.filter((post) => {
-    return post.tags.includes(discuss)
-  });
-console.log(cate);
  
   return (
     <>
@@ -61,12 +61,12 @@ console.log(cate);
           <h1 className="flex p-[3px]">All Blog Post</h1>
           <div className="flex justify-between">
             <div className="flex gap-[10px]">
-              <p className="flex p-[3px] hover:bg-black hover:text-white rounded-[4px]" onClick={on}>All</p>
-              <p className="flex p-[3px] hover:bg-black hover:text-white rounded-[4px]" onClick={on}>Design</p>
-              <p className="flex p-[3px] hover:bg-black hover:text-white rounded-[4px]" onClick={on}>Travel</p>
-              <p className="flex p-[3px] hover:bg-black hover:text-white rounded-[4px]" onClick={on}>Fashion</p>
-              <p className="flex p-[3px] hover:bg-black hover:text-white rounded-[4px]" onClick={on}>Branding</p>
-              <p className="flex p-[3px] hover:bg-black hover:text-white rounded-[4px]" onClick={on}>Discuss</p>
+              <p className={discuss==""?  "flex p-[3px] bg-black text-white rounded-[4px]" : "flex p-[3px] hover:bg-black hover:text-white rounded-[4px]"} onClick={on}>All</p>
+              <p className={discuss=="design"?"flex p-[3px] bg-black text-white rounded-[4px]":"flex p-[3px] hover:bg-black hover:text-white rounded-[4px]"} onClick={on}>Design</p>
+              <p className={discuss=="travel"?"flex p-[3px] bg-black text-white rounded-[4px]":"flex p-[3px] hover:bg-black hover:text-white rounded-[4px]"} onClick={on}>Travel</p>
+              <p className={discuss=="fashion"?"flex p-[3px] bg-black text-white rounded-[4px]":"flex p-[3px] hover:bg-black hover:text-white rounded-[4px]"} onClick={on}>Fashion</p>
+              <p className={discuss=="branding"?"flex p-[3px] bg-black text-white rounded-[4px]":"flex p-[3px] hover:bg-black hover:text-white rounded-[4px]"} onClick={on}>Branding</p>
+              <p className={discuss=="discuss"?"flex p-[3px] bg-black text-white rounded-[4px]":"flex p-[3px] hover:bg-black hover:text-white rounded-[4px]"} onClick={on}>Discuss</p>
             </div>
             <Link href="/blog">
             <p className="flex p-[3px] hover:bg-black hover:text-white rounded-[4px]">View all</p></Link>
@@ -80,8 +80,8 @@ console.log(cate);
           ) : (discuss==""? posts
               .filter((post) => {
                 return (
-                  post.title.includes(searchValue.toLowerCase()) ||
-                  post.description.includes(searchValue.toLowerCase())
+                  post.title.toLowerCase().includes(searchValue.toLowerCase()) ||
+                  post.description.toLowerCase().includes(searchValue.toLowerCase())
                 );
               })
               .map((post, index) => {
@@ -92,8 +92,12 @@ console.log(cate);
                   </div>
                   </Link>
                 );
-              }): cate.map((post, index) => {
-                if (index >= 9) return 
+              }): cate.filter((post) => {
+                return (
+                  post.title.toLowerCase().includes(searchValue.toLowerCase()) ||
+                  post.description.toLowerCase().includes(searchValue.toLowerCase())
+                );
+              }).map((post) => {
                 return (
                   <div className="h-fit w-fit p-[8px] border-[1px] rounded-[8px]" key={post.id}>
                     <SinglePost {...post} />
@@ -103,7 +107,8 @@ console.log(cate);
             })
           )}
         </div>
-        <button onClick={load} className={styles.btn}>
+        <button onClick={discuss==''?
+          load:load2 }className={styles.btn}>
           Load more
         </button>
       </div>

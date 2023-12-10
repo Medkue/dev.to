@@ -18,7 +18,9 @@ console.log();
 return(
     <div>
         {isLoading? <div></div>:
-        <img src={data.cover_image}/>}
+            <img src={data.cover_image} />}
+        
+      
     </div>
 )
 }
