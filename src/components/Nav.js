@@ -7,13 +7,17 @@ import { useSearch } from "@/app/layout";
 
 export const Nav = () => {
   const { searchValue, setSearchValue } = useSearch();
+  const [isNav, setIsNav] = useState("");
 
   const inputHandler = (event) => {
     setSearchValue(event.target.value);
   };
 
+  const on = (event) => {
+    setIsNav(event.target.textContent);
+  };
   return (
-    <div className="w-full flex justify-center">
+    <div className="w-full flex justify-center bg-[#F4F4F5] h-[80px] fixed z-20">
       <div className={styles.nav}>
         <img src="./Logo.svg" />
 
@@ -22,13 +26,40 @@ export const Nav = () => {
         </div>
         <div className={styles.mid_nav}>
           <Link href="/">
-            <p className="text-base text-[#3B3C4A]">Home</p>
+            <p
+              className={
+                isNav == "Home"
+                  ? "text-xl text-black"
+                  : "text-base text-[#3B3C4A]"
+              }
+              onClick={on}
+            >
+              Home
+            </p>
           </Link>
           <Link href="/blog">
-            <p className="text-base text-[#3B3C4A]">Blog</p>
+            <p
+              className={
+                isNav == "Blog"
+                  ? "text-xl text-black"
+                  : "text-base text-[#3B3C4A]"
+              }
+              onClick={on}
+            >
+              Blog
+            </p>
           </Link>
           <Link href="/contact">
-          <p className="text-base text-[#3B3C4A]">Contact</p>
+            <p
+              className={
+                isNav == "Contact"
+                  ? "text-xl text-black"
+                  : "text-base text-[#3B3C4A]"
+              }
+              onClick={on}
+            >
+              Contact
+            </p>
           </Link>
         </div>
         <div className={styles.search}>
