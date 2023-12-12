@@ -2,10 +2,10 @@ import Link from "next/link";
 
 export const Footer = () => {
   return (
-    <div className="h-[495px] w-full flex flex-col gap-[25px] items-center justify-center bg-[#F6F6F7] mt-[50px]">
+    <div className="h-[495px] w-full flex gap-[25px] items-center justify-center bg-[#F6F6F7] mt-[50px]">
       <div className="w-[1200px] ">
-        <div className="w-[100%] flex">
-          <div className="flex flex-col grow basis-0 gap-[20px]">
+        <div className="w-[100%] md:flex md:flex-row flex-col items-center justify-center gap-[20px]">
+          <div className="md:flex flex-col grow basis-0 gap-[20px] hidden">
             <h1>About</h1>
             <p>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -34,9 +34,9 @@ export const Footer = () => {
           </div>
         </div>
         <hr />
-        <div className="w-[100%] flex justify-between mt-[32px] mb-[32px]">
+        <div className="w-[100%] flex md:justify-between justify-center mt-[32px] mb-[32px] ">
           <img src="./Copyright Info.svg" />
-          <div className="flex gap-[16px]">
+          <div className="md:flex gap-[16px] hidden ">
             <p>Terms of Use</p>
             <hr />
             <p>Privacy Policy</p>

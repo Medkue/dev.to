@@ -54,8 +54,8 @@ export const BlogListing = () => {
 
   return (
     <>
-      <div className="w-full flex flex-col items-center mt-[50px] mb-[50px]">
-        <div className="flex flex-col gap-[10px] w-[1200px] mb-[10px]">
+      <div className="w-full flex flex-col items-center mt-[100px] mb-[50px]">
+        <div className="flex flex-col gap-[10px] w-[70%] mb-[10px]">
           <h1 className="flex p-[3px]">All Blog Post</h1>
           <div className="flex justify-between">
             <div className="flex gap-[10px]">
@@ -127,7 +127,7 @@ export const BlogListing = () => {
             </Link>
           </div>
         </div>
-        <div className="w-[1200px] grid grid-cols-3 flex justify-center gap-[40px] ">
+        <div className="w-[70%] md:grid md:grid-cols-3 flex flex-col items-center gap-[40px] ">
           {isLoading ? (
             <div className="w-full h-full flex justify-center items-center ">
               <h1>huleechih unshjin hu</h1>

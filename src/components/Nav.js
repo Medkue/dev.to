@@ -17,7 +17,7 @@ export const Nav = () => {
     setIsNav(event.target.textContent);
   };
   return (
-    <div className="w-full flex justify-center bg-[#F4F4F5] h-[80px] fixed z-20">
+    <div className="w-full flex justify-center bg-[#F4F4F5] h-[80px] fixed z-20 top-[0px] left-[0px]">
       <div className={styles.nav}>
         <img src="./Logo.svg" />
 
