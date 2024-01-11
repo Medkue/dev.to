@@ -52,6 +52,14 @@ export const BlogListing = () => {
     }
   };
 
+
+  const pairWiseDistinct = (arr) => {
+      let i;
+      let j;
+      let k;
+      
+  }
+
   return (
     <>
       <div className="w-full flex flex-col items-center mt-[100px] mb-[50px]">
